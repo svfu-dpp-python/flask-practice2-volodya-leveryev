@@ -206,3 +206,47 @@ git commit -m "Add table of multiplications"
 ```
 
 ## Наследование шаблонов
+
+1. Создайте новый шаблон `base.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Учебный сайт</title>
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>
+```
+
+2. Измените содержимое шаблона `index.html` следующим образом:
+
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Добро пожаловать!</h1>
+<form>
+    <label>Введите арифметическое выражение (например 2+3):</label>
+    <input type="text" name="expression">
+    <input type="submit" value="Вычислить">
+</form>
+<p>Результат: {{ result }}</p>
+{% endblock %}
+```
+
+3. Убедитесь, что после изменений работа сайта не изменилась
+
+4. Самостоятельно внесите аналогичные изменения в шаблоны `table.html` и `result.html`
+
+5. Зафиксируйте изменения в новом коммите:
+
+```powershell
+git add .
+git commit -m "Refactor templates"
+```
