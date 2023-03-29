@@ -15,7 +15,6 @@
 ## Отладка во Flask
 
 1. Создайте файл `app.py` и добавьте в него следующий код:
-
 ```python
 from flask import Flask, render_template, request
 
@@ -34,6 +33,8 @@ def index_page():
         result = str(eval(request.args['expression']))
     return render_template("index.html", result=result)
 ```
+
+Обратите внимание на способы печати отладочных сообщений.
 
 2. Создайте каталог `templates`, создайте в нем файл `index.html` и добавьте в него следующий код:
 
@@ -125,15 +126,20 @@ git commit -m "Add favicon and picture to static files"
 
 ## Дополнительные эндпойнты
 
-1. Добавьте функцию в `app.py` и допишите названия месяцев в список `months`:
+1. Добавьте в `app.py` две новые функции:
 
 ```
 @app.route('/table/')
 def table_page():
     return render_template('table.html')
+
+
+@app.route('/result/')
+def result_page():
+    return render_template('result.html')
 ```
 
-2. Добавьте шаблон `table.html`:
+2. Добавьте шаблон файла `table.html`:
 
 ```html
 <!DOCTYPE html>
@@ -145,6 +151,7 @@ def table_page():
 </head>
 <body>
     <h1>Таблица умножения</h1>
+    <p><a href="{{ url_for('index_page') }}">Главная</a></p>
     <table>
         {% for x in range(1, 11) %}
         <tr>
@@ -162,21 +169,9 @@ def table_page():
 </html>
 ```
 
-3. Добавьте ссылку в шаблон `index.html`:
+Обратите внимание на синтаксические конструкции в шаблонах.
 
-```html
-<a href="{{ url_for('table_page') }}">Таблица умножения</a>
-```
-
-4. Добавьте функцию в `app.py` и допишите названия месяцев в список `months`:
-
-```
-@app.route('/result/')
-def result_page():
-    return render_template('result.html')
-```
-
-5. Добавьте шаблон `result.html`:
+3. Добавьте шаблон файла `result.html`:
 
 ```html
 <!DOCTYPE html>
@@ -193,6 +188,21 @@ def result_page():
     <p>{{ x * y }}</p>
 </body>
 </html>
+```
+
+4. Добавьте в шаблон `index.html` новую ссылку:
+
+```html
+<a href="{{ url_for('table_page') }}">Таблица умножения</a>
+```
+
+6. Проверьте работу двух новых страниц на сайте.
+
+7. Зафиксируйте изменения в новом коммите:
+
+```powershell
+git add .
+git commit -m "Add table of multiplications"
 ```
 
 ## Наследование шаблонов
