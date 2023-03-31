@@ -134,9 +134,9 @@ def table_page():
     return render_template('table.html')
 
 
-@app.route('/result/')
-def result_page():
-    return render_template('result.html')
+@app.route('/result/<int:x>/<int:y>/')
+def result_page(x, y):
+    return render_template('result.html', x=x, y=y)
 ```
 
 2. Добавьте шаблон файла `table.html`:
@@ -157,7 +157,7 @@ def result_page():
         <tr>
             {% for y in range(1, 11) %}
             <td>
-                <a href="{{ url_for('result_page', x, y) }}">
+                <a href="{{ url_for('result_page', x=x, y=y) }}">
                     {{ x }} &times; {{ y }}
                 </a>
             </td>
