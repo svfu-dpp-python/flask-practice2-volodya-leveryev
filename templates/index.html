@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Учебный сайт</title>
-    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
-</head>
-<body>
-    <h1>Добро пожаловать!</h1>
-    <form>
-        <label>Введите арифметическое выражение (например 2+3):</label>
-        <input type="text" name="expression">
-        <input type="submit" value="Вычислить">
-    </form>
-    <p>Результат: {{ result }}</p>
-    <p><a href="{{ url_for('table_page') }}">Таблица умножения</a></p>
-    <img src="{{ url_for('static', filename='funny-cat.webp') }}" alt="Funny cat">
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Добро пожаловать!</h1>
+<form>
+    <label>Введите арифметическое выражение (например 2+3):</label>
+    <input type="text" name="expression">
+    <input type="submit" value="Вычислить">
+</form>
+<p>Результат: {{ result }}</p>
+<p><a href="{{ url_for('table_page') }}">Таблица умножения</a></p>
+<img src="{{ url_for('static', filename='funny-cat.webp') }}" alt="Funny cat">
+{% endblock %}
